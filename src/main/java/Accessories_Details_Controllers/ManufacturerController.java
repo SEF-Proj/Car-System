@@ -170,6 +170,115 @@ public class ManufacturerController implements Initializable {
 
     
     @FXML
+    void High_CheckBox(ActionEvent event) {
+
+        add_item_low.setSelected(false);
+        add_item_medium.setSelected(false);
+    }
+
+    @FXML
+    void Low_CheckBox(ActionEvent event) {
+        add_item_high.setSelected(false);
+        add_item_medium.setSelected(false);
+    }
+
+    @FXML
+    void Medium_CheckBox(ActionEvent event) {
+
+        add_item_low.setSelected(false);
+        add_item_high.setSelected(false);
+    }
+    @FXML
+    void AddButton(ActionEvent event) {
+
+        boolean isSelectedH = add_item_high.isSelected();
+        boolean isSelectedL = add_item_low.isSelected();
+        boolean isSelectedM = add_item_medium.isSelected();
+        String ch = "";
+
+
+        if(isSelectedH)
+        {
+            ch = "high";
+
+
+        }
+        else if(isSelectedL)
+            {
+            ch = "low";
+
+        }
+        else if(isSelectedM)
+        {
+            ch = "medium";
+        }
+
+        if(ch != "medium" && ch != "high" && ch != "low")
+        {
+            add_item_message_text.setFill(Paint.valueOf("red"));
+            add_item_message_text.setText("Please fill all fields");
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> add_item_message_text.setText(""));
+            pause.play();
+        }
+        else {
+            if ((add_item_Acc_ID.getText() == null || add_item_Acc_ID.getText().isEmpty()) || (add_item_Acc_name.getText() == null || add_item_Acc_name.getText().isEmpty()) || ((add_item_Price.getText() == null || add_item_Price.getText().isEmpty())) || (add_item_CH_Box_Category.getValue() == null || add_item_CH_Box_Category.getValue().isEmpty()) || ((add_item_CH_Box_Quality.getValue() == null || add_item_CH_Box_Quality.getValue().isEmpty()))) {
+                add_item_message_text.setFill(Paint.valueOf("red"));
+                add_item_message_text.setText("Please fill all fields");
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> add_item_message_text.setText(""));
+                pause.play();
+            }
+            else {
+                Item it = new Item(add_item_Acc_ID.getText(), add_item_Acc_name.getText(), add_item_Price.getText(), ch, add_item_CH_Box_Category.getValue(), add_item_CH_Box_Quality.getValue());
+
+                M = new Manufacturer();
+                if(M.RetObj().searchForItembyID(add_item_Acc_ID.getText()) != null)
+                {
+                    add_item_message_text.setFill(Paint.valueOf("red"));
+                    add_item_message_text.setText("An item with same ID already exist");
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> add_item_message_text.setText(""));
+                    pause.play();
+                }
+             else{
+                   if(ai.AddItem(it)){
+                    tablem1.getItems().add(it);
+
+                    M.RetObj().ite.add(it);
+
+                    add_item_message_text.setFill(Paint.valueOf("green"));
+                    add_item_message_text.setText("Successfully added");
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> add_item_message_text.setText(""));
+                    pause.play();
+
+                       add_item_Acc_ID.setText("");
+                       add_item_Acc_name.setText("");
+                       add_item_CH_Box_Category.setValue("");
+                       add_item_Price.setText("");
+                       add_item_medium.setSelected(false);
+                       add_item_high.setSelected(false);
+                       add_item_low.setSelected(false);
+                       add_item_CH_Box_Quality.setValue("");
+
+                   }
+                   else{
+                       add_item_message_text.setFill(Paint.valueOf("red"));
+                       add_item_message_text.setText("ID already exist");
+                       PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                       pause.setOnFinished(e -> add_item_message_text.setText(""));
+                       pause.play();
+                   }
+             }
+            }
+        }
+
+
+
+    }
+
+    @FXML
     void DeleteButon(ActionEvent event) {
 
         if(tablem1.getSelectionModel().getSelectedItem() != null)
