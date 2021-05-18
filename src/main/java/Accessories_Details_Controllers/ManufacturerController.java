@@ -166,9 +166,6 @@ public class ManufacturerController implements Initializable {
     public Button edit_button;
 
 
-   
-
-    
     @FXML
     void High_CheckBox(ActionEvent event) {
 
@@ -188,6 +185,58 @@ public class ManufacturerController implements Initializable {
         add_item_low.setSelected(false);
         add_item_high.setSelected(false);
     }
+
+
+
+
+    @FXML
+    void AcceptOrder(ActionEvent event) {
+
+        if(tablem2.getSelectionModel().getSelectedItem() != null)
+        {
+            M = new Manufacturer();
+            Customer C = new Customer();
+
+
+            String ID = tablem2.getSelectionModel().getSelectedItem().getID();
+            String name = tablem2.getSelectionModel().getSelectedItem().getName();
+            String price = tablem2.getSelectionModel().getSelectedItem().getPrice();
+            String price_range = tablem2.getSelectionModel().getSelectedItem().getPrice_range();
+            String Category = tablem2.getSelectionModel().getSelectedItem().getCategory();
+            String Quality = tablem2.getSelectionModel().getSelectedItem().getQuality();
+            String Quantity = tablem2.getSelectionModel().getSelectedItem().getQuantity();
+            Text Status = new Text("Accepted");
+            Status.setFill(Paint.valueOf("green"));
+            Item it = new Item(ID, name, price, price_range,Category, Quality, Quantity, Status);
+
+            for(int i = 0; i < AccountVerification.arrayC.size(); i++)
+            {
+                for(int j = 0; j < AccountVerification.arrayC.get(i).itemOrdered.size(); j++)
+
+                    if((AccountVerification.arrayC.get(i).itemOrdered.get(j)).equals(it)){
+                        AccountVerification.arrayC.get(i).itemOrdered.get(j).setStatus(Status);
+
+                    }
+            }
+
+            M.RetObj().itemAcceptReject.add(it);
+            tablem3.getItems().add(it);
+
+            M.RetObj().iteOrdered.remove(tablem2.getSelectionModel().getSelectedItem());
+            tablem2.getItems().remove(tablem2.getSelectionModel().getSelectedItem());
+
+
+        }
+        else
+        {
+            messageText2.setFill(Paint.valueOf("red"));
+            messageText2.setText("Please select an item");
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> messageText2.setText(""));
+            pause.play();
+        }
+    }
+
     @FXML
     void AddButton(ActionEvent event) {
 
@@ -324,7 +373,55 @@ public class ManufacturerController implements Initializable {
 
     }
 
-    
+    @FXML
+    void RejectOrder(ActionEvent event) {
+
+        if(tablem2.getSelectionModel().getSelectedItem() != null)
+        {
+            M = new Manufacturer();
+
+            Customer C = new Customer();
+
+            String ID = tablem2.getSelectionModel().getSelectedItem().getID();
+            String name = tablem2.getSelectionModel().getSelectedItem().getName();
+            String price = tablem2.getSelectionModel().getSelectedItem().getPrice();
+            String price_range = tablem2.getSelectionModel().getSelectedItem().getPrice_range();
+            String Category = tablem2.getSelectionModel().getSelectedItem().getCategory();
+            String Quality = tablem2.getSelectionModel().getSelectedItem().getQuality();
+            String Quantity = tablem2.getSelectionModel().getSelectedItem().getQuantity();
+            Text Status =new Text("Rejected");
+            Status.setFill(Paint.valueOf("red"));
+            Item it = new Item(ID, name, price, price_range,Category, Quality, Quantity, Status);
+
+            for(int i = 0; i < AccountVerification.arrayC.size(); i++)
+            {
+                for(int j = 0; j < AccountVerification.arrayC.get(i).itemOrdered.size(); j++){
+                    if((AccountVerification.arrayC.get(i).itemOrdered.get(j)).equals(it))
+                    {
+                        AccountVerification.arrayC.get(i).itemOrdered.get(j).setStatus(Status);
+                    }
+
+                }
+            }
+
+
+            M.RetObj().itemAcceptReject.add(it);
+            tablem3.getItems().add(it);
+
+            M.RetObj().iteOrdered.remove(tablem2.getSelectionModel().getSelectedItem());
+            tablem2.getItems().remove(tablem2.getSelectionModel().getSelectedItem());
+
+
+        }
+        else
+        {
+           messageText2.setFill(Paint.valueOf("red"));
+           messageText2.setText("Please select an item");
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> messageText2.setText(""));
+            pause.play();
+        }
+    }
 
     @FXML
     void Search_by_id(ActionEvent event) {
