@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.controllers.Customer">
+    <children>
+
+        <TextField fx:id="usernameField" layoutX="515.0" layoutY="326.0" />
+        <Label layoutX="401.0" layoutY="328.0" prefHeight="21.0" prefWidth="108.0" text="Username:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="401.0" layoutY="391.0" prefHeight="21.0" prefWidth="87.0" text="Password:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="passwordField" layoutX="515.0" layoutY="389.0" />
+        <Button fx:id="sign_in" layoutX="559.0" layoutY="450.0" mnemonicParsing="false" onAction="#Sign_in" prefHeight="30.0" prefWidth="80.0" text="Sign in" />
+        <Button fx:id="go_back" layoutX="45.0" layoutY="630.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="80.0" text="Go back" />
+        <Text fx:id="loginMessage" fill="#e10909" layoutX="451.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px;" wrappingWidth="298.7294921875" />
+        <Button fx:id="sign_up_c" layoutX="1071.0" layoutY="630.0" mnemonicParsing="false" onAction="#Sign_up_c" prefHeight="30.0" prefWidth="80.0" text="Sing Up" />
+      <Label layoutX="900.0" layoutY="633.0" prefHeight="24.0" prefWidth="171.0" text="Make an account:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="542.0" layoutY="201.0" text="Customer">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

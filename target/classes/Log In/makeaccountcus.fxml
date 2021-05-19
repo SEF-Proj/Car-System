@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.TextField?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.controllers.SignUpCus">
+    <children>
+        <Button fx:id="go_back" layoutX="30.0" layoutY="637.0" mnemonicParsing="false" onAction="#back" prefHeight="34.0" prefWidth="94.0" text="Go back">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <TextField fx:id="usrField" layoutX="579.0" layoutY="260.0" />
+        <Label layoutX="410.0" layoutY="262.0" prefHeight="21.0" prefWidth="162.0" text="Choose username:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="410.0" layoutY="313.0" prefHeight="21.0" prefWidth="162.0" text="Choose password:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="passField" layoutX="579.0" layoutY="312.0" />
+        <Label layoutX="425.0" layoutY="132.0" prefHeight="69.0" prefWidth="351.0" text="Make an account as customer">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Button fx:id="sign_up" layoutX="556.0" layoutY="380.0" mnemonicParsing="false" onAction="#Sign_up" text="Sign Up">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Button>
+        <Text fx:id="id_test1" layoutX="465.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="269.0000000000001">
+            <font>
+                <Font size="16.0" />
+            </font></Text>
+    </children>
+</AnchorPane>
