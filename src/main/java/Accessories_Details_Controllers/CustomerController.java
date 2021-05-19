@@ -134,7 +134,52 @@ public class CustomerController implements Initializable {
     @FXML
     public TableColumn<Item, Text> Status3;
 
-   
+    @FXML
+    void Add_to_cart(ActionEvent event) {
+
+        CU = new Customer();
+        manuf = new Manufacturer();
+
+
+        if(table1.getSelectionModel().getSelectedItem() != null)
+        {
+
+
+
+           // if(!CU.RetObj().itemc.contains(table1.getSelectionModel().getSelectedItem()))
+            if(CU.RetObj().Contain(table1.getSelectionModel().getSelectedItems()))
+            {
+                table2.getItems().addAll(table1.getSelectionModel().getSelectedItems());
+                CU.RetObj().itemc.addAll(table1.getSelectionModel().getSelectedItems());
+
+                messageText1.setFill(Paint.valueOf("green"));
+                messageText1.setText("successfully added");
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(e -> messageText1.setText(""));
+                pause.play();
+
+
+            }
+            else
+            {
+                messageText1.setFill(Paint.valueOf("red"));
+                messageText1.setText("some of selected items already stored");
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(e -> messageText1.setText(""));
+                pause.play();
+            }
+
+        }
+        else
+        {
+            messageText1.setFill(Paint.valueOf("red"));
+            messageText1.setText("please select an item");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(e -> messageText1.setText(""));
+            pause.play();
+        }
+
+    }
 
     @FXML
     void MouseClick(MouseEvent event) {
@@ -158,7 +203,72 @@ public class CustomerController implements Initializable {
         stage.show();
     }
 
-    
+    @FXML
+    void MakeOrder(ActionEvent event) {
+
+        if(ChoiceBox_ByQuantity.getValue() == null || ChoiceBox_ByQuantity.getValue().isEmpty())
+        {
+            messageText.setFill(Paint.valueOf("red"));
+            messageText.setText("please choose quantity");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(e -> messageText.setText(""));
+            pause.play();
+        }
+        else
+        if(table2.getSelectionModel().getSelectedItem() != null)
+        {
+            CU = new Customer();
+
+
+            String ID = table2.getSelectionModel().getSelectedItem().getID();
+            String name = table2.getSelectionModel().getSelectedItem().getName();
+            String price = table2.getSelectionModel().getSelectedItem().getPrice();
+            String price_range = table2.getSelectionModel().getSelectedItem().getPrice_range();
+            String Category = table2.getSelectionModel().getSelectedItem().getCategory();
+            String Quality = table2.getSelectionModel().getSelectedItem().getQuality();
+            String Quantity = ChoiceBox_ByQuantity.getValue();
+            Text Status =new Text("submitted");
+
+            Item it = new Item(ID, name, price, price_range,Category, Quality,Quantity, Status);
+
+            for(int i = 0; i < AccountVerification.arrayM.size(); i++)
+            {
+                for(int j = 0; j < AccountVerification.arrayM.get(i).ite.size(); j++)
+                {
+                    if(table2.getSelectionModel().getSelectedItem().equals(AccountVerification.arrayM.get(i).ite.get(j)))
+                    {
+                        AccountVerification.arrayM.get(i).iteOrdered.add(it);
+                    }
+                }
+            }
+
+
+
+
+            if(!CU.RetObj().AddITEM(it))
+            {
+                table3.getItems().add(it);
+                CU.RetObj().itemOrdered.add(it);
+                CU.RetObj().itemc.remove(table2.getSelectionModel().getSelectedItem());
+                table2.getItems().remove(table2.getSelectionModel().getSelectedItem());
+                ChoiceBox_ByQuantity.setValue("");
+
+            }
+
+
+
+
+        }
+        else
+        {
+            messageText.setFill(Paint.valueOf("red"));
+            messageText.setText("please select an item");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(e -> messageText.setText(""));
+            pause.play();
+        }
+
+    }
 
     @FXML
     void Search_by_category(ActionEvent event) {
@@ -315,6 +425,33 @@ public class CustomerController implements Initializable {
 
     }
 
-   
+    public void DeleteItemFromCart(ActionEvent event) {
+
+        if(table2.getSelectionModel().getSelectedItem() != null)
+        {
+            messageText.setFill(Paint.valueOf("green"));
+            messageText.setText("deleted successfully");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(e -> messageText.setText(""));
+            pause.play();
+            CU = new Customer();
+            CU.RetObj().itemc.remove(table2.getSelectionModel().getSelectedItem());
+            table2.getItems().remove(table2.getSelectionModel().getSelectedItem());
+        }
+        else
+        {
+            messageText.setFill(Paint.valueOf("red"));
+            messageText.setText("please select an item");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(e -> messageText.setText(""));
+            pause.play();
+        }
+
+    }
+
+    /*public CustomerController RETOBJ()
+    {
+        return C;
+    }*/
 
 }
