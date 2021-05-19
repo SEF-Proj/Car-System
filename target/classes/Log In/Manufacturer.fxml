@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.controllers.Manufacturer">
+    <children>
+        <TextField fx:id="usernameField" layoutX="515.0" layoutY="326.0" />
+        <Label layoutX="401.0" layoutY="328.0" prefHeight="21.0" prefWidth="108.0" text="User name:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="401.0" layoutY="391.0" prefHeight="21.0" prefWidth="87.0" text="Password:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="passwordField" layoutX="515.0" layoutY="389.0" />
+        <Label layoutX="509.0" layoutY="182.0" prefHeight="61.0" prefWidth="182.0" text="Manufacturer">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="IDField" layoutX="515.0" layoutY="449.0" />
+        <Label layoutX="433.0" layoutY="451.0" text="ID:">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <Button fx:id="sign_in" layoutX="560.0" layoutY="509.0" mnemonicParsing="false" onAction="#Sign_in" prefHeight="30.0" prefWidth="80.0" text="Sign in" />
+        <Button fx:id="go_back" layoutX="49.0" layoutY="630.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="80.0" text="Go back" />
+        <Text fx:id="loginMessage" fill="#e10909" layoutX="480.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px;" wrappingWidth="240.0" />
+        <Button fx:id="sign_up_m" layoutX="1079.0" layoutY="630.0" mnemonicParsing="false" onAction="#Sign_up_m" prefHeight="30.0" prefWidth="80.0" text="Sign Up" />
+      <Label layoutX="914.0" layoutY="635.0" text="Make an account:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
