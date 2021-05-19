@@ -69,7 +69,7 @@
     </Tab>
       <Tab text="Cart">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" onMouseClicked="#MouseClicked">
                <children>
                   <Button fx:id="make_order" layoutX="545.0" layoutY="488.0" mnemonicParsing="false" onAction="#MakeOrder" prefHeight="30.0" prefWidth="110.0" text="Make Order" />
                   <Text fx:id="messageText" layoutX="440.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="273.7294921875">
